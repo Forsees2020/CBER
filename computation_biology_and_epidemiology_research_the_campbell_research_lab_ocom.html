@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computation Biology and Epidemiology Research | The Campbell Research Lab (OCOM)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Newsreader (Editorial Serif), Inter (UI Sans), JetBrains Mono (Technical Data) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Newsreader', 'Georgia', 'serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        canvas: '#FAF9F6',
+                        navy: {
+                            950: '#091529',
+                            900: '#0F2342',
+                            800: '#16325C',
+                            700: '#1E437A',
+                        },
+                        teal: {
+                            800: '#115E59',
+                            700: '#0F766E',
+                            600: '#0D9488',
+                            50: '#F0FDFA',
+                        },
+                        amber: {
+                            700: '#B45309',
+                            100: '#FEF3C7',
+                            50: '#FFFBEB',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-canvas text-slate-900 font-sans antialiased selection:bg-navy-900 selection:text-white">
+
+    <!-- Top Institutional Status Bar -->
+    <div class="bg-navy-950 text-slate-300 text-xs py-2.5 px-4 sm:px-6 lg:px-8 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5">
+            <span class="tracking-wide uppercase font-medium text-slate-300">
+                Orlando College of Osteopathic Medicine (OCOM) &bull; Winter Garden, FL &bull; Open Lab Showcase
+            </span>
+            <span class="inline-flex items-center gap-2 text-teal-300 font-medium">
+                <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                Recruiting OCOM Medical Students &amp; Research Collaborators
+            </span>
+        </div>
+    </div>
+
+    <!-- Sticky Header & Navigation -->
+    <header class="sticky top-0 z-40 bg-canvas/95 backdrop-blur-md border-b border-slate-200/90">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Lab Identity -->
+                <a href="#" class="flex items-center gap-3.5 group">
+                    <div class="w-11 h-11 rounded-xl bg-navy-900 text-white flex items-center justify-center shadow-sm group-hover:bg-teal-700 transition-colors shrink-0">
+                        <!-- Molecular & Geospatial Lattice Emblem -->
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="12" cy="5" r="2.2" />
+                            <circle cx="5.5" cy="17" r="2.2" />
+                            <circle cx="18.5" cy="17" r="2.2" />
+                            <circle cx="12" cy="13" r="1.8" />
+                            <line x1="12" y1="7.2" x2="12" y2="11.2" />
+                            <line x1="7.4" y1="15.9" x2="10.4" y2="14" />
+                            <line x1="16.6" y1="15.9" x2="13.6" y2="14" />
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-serif font-bold text-lg sm:text-xl text-navy-900 tracking-tight block leading-tight">
+                            Computation Biology and Epidemiology Research
+                        </span>
+                        <span class="text-xs text-slate-600 font-medium tracking-wide mt-0.5 block">
+                            The Campbell Research Lab &bull; Orlando College of Osteopathic Medicine (OCOM)
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium text-slate-600">
+                    <a href="#overview" class="hover:text-navy-900 transition-colors py-2">Lab Overview</a>
+                    <a href="#framework" class="hover:text-navy-900 transition-colors py-2">Framework</a>
+                    <a href="#projects" class="hover:text-navy-900 transition-colors py-2">Active Studies</a>
+                    <a href="#collaborate" class="hover:text-navy-900 transition-colors py-2">Collaborate</a>
+                    <a href="mailto:ccampbell@ocom.org?subject=Research%20Collaboration%20Inquiry%20%E2%80%94%20The%20Campbell%20Research%20Lab" class="px-4 py-2.5 rounded-xl bg-navy-900 text-white hover:bg-teal-700 transition-colors shadow-sm">
+                        Email Dr. Campbell
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" type="button" aria-label="Toggle Menu" class="lg:hidden p-2.5 rounded-xl text-slate-700 hover:bg-slate-200/60 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-5 space-y-2">
+            <a href="#overview" class="block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50">Lab Overview</a>
+            <a href="#framework" class="block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50">Framework</a>
+            <a href="#projects" class="block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50">Active Studies</a>
+            <a href="#collaborate" class="block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-slate-50">Collaborate</a>
+            <a href="mailto:ccampbell@ocom.org?subject=Research%20Collaboration%20Inquiry%20%E2%80%94%20The%20Campbell%20Research%20Lab" class="block px-3 py-2.5 rounded-xl text-base font-medium bg-navy-900 text-white text-center mt-2">Email Dr. Campbell</a>
+        </div>
+    </header>
+
+    <!-- Hero Section & Lab Mission -->
+    <section id="overview" class="bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+                <!-- Left Column: Mission Statement -->
+                <div class="lg:col-span-8">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy-900/5 border border-navy-900/15 text-navy-900 text-xs font-semibold uppercase tracking-wider mb-5">
+                        <span>The Campbell Research Lab &bull; Orlando College of Osteopathic Medicine (OCOM)</span>
+                    </div>
+                    <h1 class="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-navy-900 tracking-tight leading-[1.15] mb-5">
+                        Computation Biology and Epidemiology Research
+                    </h1>
+                    <p class="text-base sm:text-lg text-slate-600 leading-relaxed mb-7 max-w-3xl">
+                        Led by <strong class="text-navy-900 font-semibold">Dr. Christopher O. Campbell</strong> at Orlando College of Osteopathic Medicine (OCOM), our laboratory empowers medical students and collaborative investigators to translate open-access genomic, proteomic, and spatial datasets into actionable biomedical insights—without requiring extensive coding prerequisites.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3.5">
+                        <a href="#projects" class="px-6 py-3.5 rounded-xl bg-navy-900 text-white font-medium text-sm hover:bg-teal-700 transition-all shadow-sm inline-flex items-center gap-2">
+                            <span>View Active Studies (3)</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </a>
+                        <a href="#framework" class="px-6 py-3.5 rounded-xl bg-canvas text-navy-900 border border-slate-300 font-medium text-sm hover:bg-slate-100 transition-all inline-flex items-center gap-2">
+                            <span>Explore Framework</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Principal Investigator & Lab Snapshot -->
+                <div class="lg:col-span-4 bg-canvas rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-sm">
+                    <div class="flex items-center justify-between pb-4 mb-5 border-b border-slate-200">
+                        <div>
+                            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500">Principal Investigator</h2>
+                            <p class="font-serif font-bold text-base text-navy-900 mt-0.5">Christopher O. Campbell</p>
+                        </div>
+                        <span class="text-xs font-mono font-medium text-teal-800 bg-teal-50 px-2.5 py-1 rounded-md border border-teal-200/70">OCOM</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2.5 mb-5">
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200/90 text-center">
+                            <span class="text-2xl font-serif font-bold text-teal-700 block">1</span>
+                            <span class="text-[11px] text-slate-500 font-medium mt-0.5 block">Published</span>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200/90 text-center">
+                            <span class="text-2xl font-serif font-bold text-navy-900 block">3</span>
+                            <span class="text-[11px] text-slate-500 font-medium mt-0.5 block">In Progress</span>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-200/90 text-center">
+                            <span class="text-2xl font-serif font-bold text-amber-700 block">4+</span>
+                            <span class="text-[11px] text-slate-500 font-medium mt-0.5 block">Open Roles</span>
+                        </div>
+                    </div>
+                    <div class="space-y-2.5 text-xs sm:text-sm text-slate-600">
+                        <p><strong class="text-navy-900 font-semibold">Departments:</strong> Research &amp; Specialty Medicine, OCOM</p>
+                        <p><strong class="text-navy-900 font-semibold">Contact:</strong> <a href="mailto:ccampbell@ocom.org" class="text-teal-700 font-mono text-xs underline hover:text-navy-900">ccampbell@ocom.org</a></p>
+                        <p class="text-xs text-slate-500 pt-1 border-t border-slate-200/80">
+                            <em>Informational lab showcase &amp; student collaboration portal (not an external paper submission site).</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW DEDICATED SECTION: Published Foundational Framework & Computational Pipeline -->
+    <section id="framework" class="bg-canvas border-b border-slate-200 py-16 sm:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <!-- Section Header + Citation Banner -->
+            <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-9 shadow-sm">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-200">
+                    <div class="space-y-2.5 max-w-3xl">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-bold uppercase tracking-wider">
+                                Published Foundational Benchmark &bull; Peer-Reviewed
+                            </span>
+                            <span class="text-xs font-mono text-slate-500">Published July 15, 2026 &bull; Cureus 18(7): e112721</span>
+                        </div>
+                        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-navy-900 leading-snug">
+                            Demystifying Computational Biology: A Scalable Drug Discovery Framework for Medical Curricula
+                        </h2>
+                        <p class="text-sm text-slate-600">
+                            <strong class="text-navy-900">Author:</strong> Christopher O. Campbell (Orlando College of Osteopathic Medicine, Winter Garden, USA) &bull;
+                            <strong class="text-navy-900">DOI:</strong> <span class="font-mono text-xs text-teal-800 bg-teal-50 px-2 py-0.5 rounded">10.7759/cureus.112721</span>
+                        </p>
+                    </div>
+                    <div class="shrink-0 flex flex-col sm:flex-row lg:flex-col gap-2.5">
+                        <a href="https://doi.org/10.7759/cureus.112721" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-navy-900 text-white text-xs font-semibold hover:bg-teal-700 transition-colors inline-flex items-center justify-center gap-2 shadow-sm">
+                            <span>Read Open-Access Article</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        </a>
+                        <button type="button" id="copy-citation-btn" class="px-5 py-2.5 rounded-xl bg-canvas border border-slate-300 text-navy-900 text-xs font-semibold hover:bg-slate-100 transition-colors inline-flex items-center justify-center gap-1.5">
+                            <svg class="w-3.5 h-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                            <span id="copy-citation-label">Copy Cureus Citation</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Summary of Pedagogical & Research Architecture -->
+                <div class="pt-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    <div class="lg:col-span-8 text-sm sm:text-base text-slate-600 leading-relaxed">
+                        This published technical framework serves as the core training and research engine of The Campbell Research Lab. Using <em class="text-navy-900 font-medium">Plasmodium falciparum</em> as a model organism, students progress seamlessly from <strong class="text-navy-900">genomic sequence to 3D structural modeling and virtual ligand docking</strong> using zero-cost, cloud-accessible tools—requiring no prior coding experience while building rigorous data literacy for precision medicine.
+                    </div>
+                    <div class="lg:col-span-4 bg-navy-900 text-white rounded-2xl p-4 sm:p-5">
+                        <span class="text-[11px] font-mono uppercase tracking-wider text-teal-300 block mb-1">Active Lab Application</span>
+                        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                            Directly powers <strong class="text-white">Study 02 (FIKK9.1 Kinase Drug Discovery)</strong> and trains incoming OCOM medical students for new pathogen target investigations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive 3-Phase Computational Drug Discovery Pipeline Explorer -->
+            <div>
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-700 block mb-1">Stepwise Sequence-to-Screening Workflow</span>
+                        <h3 class="font-serif text-2xl font-bold text-navy-900">Interactive 3-Phase Computational Drug Discovery Pipeline</h3>
+                    </div>
+                    <p class="text-xs text-slate-500">Click any phase below to inspect learning objectives, stereochemical checks, and thermodynamic outputs.</p>
+                </div>
+
+                <!-- 3 Phase Selector Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6" id="phase-cards-container">
+                    <!-- Phase 1 -->
+                    <button type="button" data-phase="1" class="phase-selector-card text-left rounded-2xl border-2 border-navy-900 bg-white p-6 shadow-sm transition-all">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded-lg bg-navy-900 text-white font-mono text-xs font-bold">PHASE 01</span>
+                            <span class="text-xs font-semibold text-teal-700">Sequence &amp; Genomics</span>
+                        </div>
+                        <h4 class="font-serif text-xl font-bold text-navy-900 mb-2">Target Identification</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                            Interrogate pathogen repositories to pinpoint essential lifecycle genes while screening out human homologs to minimize off-target toxicity.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[11px] font-mono bg-slate-100 text-slate-700 px-2 py-0.5 rounded">PlasmoDB</span>
+                            <span class="text-[11px] font-mono bg-slate-100 text-slate-700 px-2 py-0.5 rounded">NCBI BLASTP</span>
+                            <span class="text-[11px] font-mono bg-slate-100 text-slate-700 px-2 py-0.5 rounded">SMART / CDD / KEGG</span>
+                        </div>
+                    </button>
+
+                    <!-- Phase 2 -->
+                    <button type="button" data-phase="2" class="phase-selector-card text-left rounded-2xl border border-slate-200 bg-white hover:border-navy-700 p-6 shadow-sm transition-all">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-navy-900 font-mono text-xs font-bold">PHASE 02</span>
+                            <span class="text-xs font-semibold text-slate-500">3D Fold &amp; Validation</span>
+                        </div>
+                        <h4 class="font-serif text-xl font-bold text-navy-900 mb-2">Structural Characterization</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                            Transition from linear amino acid strings to 3D tertiary protein pockets using AI structure prediction, homology templates, and Ramachandran validation.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[11px] font-mono bg-slate-100 text-slate-700 px-2 py-0.5 rounded">AlphaFold</span>
+                            <span class="text-[11px] font-mono bg-slate-100 text-slate-700 px-2 py-0.5 rounded">SWISS-MODEL</span>
+                            <span class="text-[11px] font-mono bg-slate-100 text-slate-700 px-2 py-0.5 rounded">PDB &amp; Ramachandran</span>
+                        </div>
+                    </button>
+
+                    <!-- Phase 3 -->
+                    <button type="button" data-phase="3" class="phase-selector-card text-left rounded-2xl border border-slate-200 bg-white hover:border-navy-700 p-6 shadow-sm transition-all">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-navy-900 font-mono text-xs font-bold">PHASE 03</span>
+                            <span class="text-xs font-semibold text-slate-500">In Silico Pharmacology</span>
+                        </div>
+                        <h4 class="font-serif text-xl font-bold text-navy-900 mb-2">Virtual Screening &amp; Docking</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                            Screen targeted antimalarial chemical libraries against the active pocket, evaluate Gibbs free energy (&Delta;G), and map 3D ligand-residue bonds.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[11px] font-mono bg-slate-100 text-slate-700 px-2 py-0.5 rounded">PubChem</span>
+                            <span class="text-[11px] font-mono bg-slate-100 text-slate-700 px-2 py-0.5 rounded">ChEMBL-NTD</span>
+                            <span class="text-[11px] font-mono bg-slate-100 text-slate-700 px-2 py-0.5 rounded">SwissDock &amp; PyMOL</span>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Dynamic Phase Deep-Dive Panel -->
+                <div id="phase-detail-panel" class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-sm">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+
+            <!-- Interactive 12-Tool Open-Access Computational Toolkit Matrix (Table 1 from Paper) -->
+            <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-700 block mb-1">Table 1 &bull; Zero-Cost Cloud Bioinformatics Stack</span>
+                        <h3 class="font-serif text-2xl font-bold text-navy-900">Open-Access Computational Toolkit Matrix (12 Platforms)</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                            Filter the 12 bioinformatics databases and molecular modeling tools standardized in Dr. Campbell's 2026 <em>Cureus</em> framework.
+                        </p>
+                    </div>
+                    <div id="toolkit-filter-pills" class="flex flex-wrap gap-2 shrink-0">
+                        <button type="button" data-tool-phase="all" class="tool-phase-pill px-3.5 py-2 rounded-xl text-xs font-semibold bg-navy-900 text-white transition-colors">
+                            All Tools (12)
+                        </button>
+                        <button type="button" data-tool-phase="1" class="tool-phase-pill px-3.5 py-2 rounded-xl text-xs font-semibold bg-canvas text-slate-700 border border-slate-200 hover:bg-slate-100 transition-colors">
+                            Phase 1: Genomics (5)
+                        </button>
+                        <button type="button" data-tool-phase="2" class="tool-phase-pill px-3.5 py-2 rounded-xl text-xs font-semibold bg-canvas text-slate-700 border border-slate-200 hover:bg-slate-100 transition-colors">
+                            Phase 2: Structure (3)
+                        </button>
+                        <button type="button" data-tool-phase="3" class="tool-phase-pill px-3.5 py-2 rounded-xl text-xs font-semibold bg-canvas text-slate-700 border border-slate-200 hover:bg-slate-100 transition-colors">
+                            Phase 3: Docking &amp; Viz (4)
+                        </button>
+                    </div>
+                </div>
+
+                <div id="toolkit-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-6">
+                    <!-- 12 Tool Cards rendered dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Standardized 5-Stage Research Pipeline Legend -->
+    <section class="bg-slate-100/80 border-b border-slate-200 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                <div>
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700">5-Stage Active Study Lifecycle Tracker</h3>
+                    <p class="text-xs text-slate-500 mt-0.5">Every study in progress displays its current milestone from protocol design to publication:</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 text-xs font-medium">
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700">
+                        <span class="w-5 h-5 rounded-full bg-navy-900 text-white font-mono text-[11px] flex items-center justify-center font-bold">1</span>
+                        Conceptualization &amp; Design
+                    </span>
+                    <span class="text-slate-400 hidden sm:inline">&rarr;</span>
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700">
+                        <span class="w-5 h-5 rounded-full bg-navy-900 text-white font-mono text-[11px] flex items-center justify-center font-bold">2</span>
+                        Data Collection
+                    </span>
+                    <span class="text-slate-400 hidden sm:inline">&rarr;</span>
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700">
+                        <span class="w-5 h-5 rounded-full bg-navy-900 text-white font-mono text-[11px] flex items-center justify-center font-bold">3</span>
+                        Analysis &amp; Modeling
+                    </span>
+                    <span class="text-slate-400 hidden sm:inline">&rarr;</span>
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700">
+                        <span class="w-5 h-5 rounded-full bg-navy-900 text-white font-mono text-[11px] flex items-center justify-center font-bold">4</span>
+                        Manuscript Drafting
+                    </span>
+                    <span class="text-slate-400 hidden sm:inline">&rarr;</span>
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700">
+                        <span class="w-5 h-5 rounded-full bg-teal-700 text-white font-mono text-[11px] flex items-center justify-center font-bold">5</span>
+                        Peer Review &amp; Pub.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Project Showcase & Filtering -->
+    <main id="projects" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+            <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-teal-700 block mb-2">Current Lab Activity &amp; Student-Led Studies</span>
+                <h2 class="font-serif text-3xl font-bold text-navy-900 tracking-tight">Ongoing Research Projects in Progress</h2>
+                <p class="text-slate-600 mt-2 max-w-2xl text-sm sm:text-base">
+                    Filter by research domain or pipeline stage, and click any project card to inspect full methodology notes, empirical figures, domain/pathway diagrams, and open collaborator roles.
+                </p>
+            </div>
+            <div class="text-sm text-slate-500 font-medium shrink-0">
+                Showing <span id="visible-count" class="text-navy-900 font-bold">3</span> of <span id="total-count" class="text-navy-900 font-bold">3</span> active studies
+            </div>
+        </div>
+
+        <!-- Filter Bar (Domain Pills + Stage Dropdown + Collaborator Toggle) -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 mb-8 shadow-sm space-y-4">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                <!-- Domain Filter Pills -->
+                <div class="space-y-1.5">
+                    <span class="block text-[11px] font-bold uppercase tracking-wider text-slate-500">Research Domain</span>
+                    <div id="domain-pills" class="flex flex-wrap gap-2">
+                        <button type="button" data-domain="all" class="domain-pill active px-3.5 py-2 rounded-xl text-xs font-semibold bg-navy-900 text-white transition-colors">
+                            All Domains (3)
+                        </button>
+                        <button type="button" data-domain="Public Health & Geospatial Epidemiology" class="domain-pill px-3.5 py-2 rounded-xl text-xs font-semibold bg-canvas text-slate-700 border border-slate-200 hover:bg-slate-100 transition-colors">
+                            Geospatial Epidemiology
+                        </button>
+                        <button type="button" data-domain="Computational Biology & Antimalarial Drug Discovery" class="domain-pill px-3.5 py-2 rounded-xl text-xs font-semibold bg-canvas text-slate-700 border border-slate-200 hover:bg-slate-100 transition-colors">
+                            Computational Drug Discovery
+                        </button>
+                        <button type="button" data-domain="Neuroproteomics & Computational Molecular Medicine" class="domain-pill px-3.5 py-2 rounded-xl text-xs font-semibold bg-canvas text-slate-700 border border-slate-200 hover:bg-slate-100 transition-colors">
+                            Neuroproteomics &amp; PTMs
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stage Dropdown & Recruiting Toggle -->
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-end gap-3 shrink-0">
+                    <div>
+                        <label for="filter-stage" class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">Pipeline Stage</label>
+                        <select id="filter-stage" class="w-full sm:w-56 rounded-xl border border-slate-300 bg-canvas px-3.5 py-2 text-xs font-semibold text-navy-900 focus:outline-none focus:ring-2 focus:ring-teal-700">
+                            <option value="all">All Stages (1–5)</option>
+                            <option value="1">Stage 1: Conceptualization</option>
+                            <option value="2">Stage 2: Data Collection</option>
+                            <option value="3">Stage 3: Analysis &amp; Modeling</option>
+                            <option value="4">Stage 4: Manuscript Drafting</option>
+                            <option value="5">Stage 5: Peer Review &amp; Pub.</option>
+                        </select>
+                    </div>
+                    <label class="inline-flex items-center gap-2 cursor-pointer select-none bg-amber-50/70 hover:bg-amber-50 border border-amber-200/80 rounded-xl px-3.5 py-2 transition-colors">
+                        <input type="checkbox" id="filter-recruiting" class="w-4 h-4 rounded text-teal-700 focus:ring-teal-700 border-slate-300">
+                        <span class="text-xs font-semibold text-amber-700">Open Collaborator Roles</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Grid -->
+        <div id="projects-grid" class="grid grid-cols-1 gap-7">
+            <!-- Project cards dynamically rendered via JS -->
+        </div>
+
+        <!-- Empty Filter State -->
+        <div id="empty-state" class="hidden bg-white rounded-2xl border border-slate-200 p-12 text-center">
+            <div class="w-12 h-12 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center mx-auto mb-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-navy-900 mb-2">No matching ongoing projects</h3>
+            <p class="text-slate-600 text-sm max-w-md mx-auto mb-6">No active studies match the selected combination of domain and pipeline stage.</p>
+            <button id="reset-filters-btn" type="button" class="px-5 py-2.5 rounded-xl bg-navy-900 text-white text-sm font-medium hover:bg-teal-700 transition-colors">
+                Reset All Filters
+            </button>
+        </div>
+    </main>
+
+    <!-- Prospective Student & Collaborator Pathways -->
+    <section id="collaborate" class="bg-white border-t border-slate-200 py-16 sm:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-12">
+                <span class="text-xs font-bold uppercase tracking-wider text-teal-700 block mb-2">OCOM Student &amp; Academic Collaboration</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy-900 tracking-tight mb-4">
+                    Prospective Student &amp; Collaborator Pathways
+                </h2>
+                <p class="text-slate-600 text-base leading-relaxed">
+                    As outlined in our published <em>Cureus</em> (2026) framework, projects in The Campbell Research Lab rely on cloud-accessible, zero-cost bioinformatics and geospatial platforms. OCOM medical students and visiting collaborators can contribute asynchronously or via structured research electives without heavy coding prerequisites.
+                </p>
+            </div>
+
+            <!-- 3 Pathway Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+                <div class="bg-canvas rounded-2xl border border-slate-200 p-6 sm:p-7 flex flex-col justify-between">
+                    <div>
+                        <span class="inline-block font-mono text-xs font-bold text-teal-800 bg-teal-50 border border-teal-200/80 px-2.5 py-1 rounded-lg mb-4">TRACK 01</span>
+                        <h3 class="font-serif text-xl font-bold text-navy-900 mb-2">Preclinical Medical Student Investigators</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                            Apply the published 3-Phase Drug Discovery Pipeline to characterize novel <em>Plasmodium falciparum</em> targets (sequence alignment, AlphaFold/SWISS-MODEL modeling, Ramachandran validation, and SwissDock screening) toward peer-reviewed co-authorship.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-200/80 text-xs text-slate-500 space-y-1">
+                        <p><strong class="text-navy-900">Format:</strong> Asynchronous research elective or longitudinal track</p>
+                        <p><strong class="text-navy-900">Prerequisites:</strong> None—stepwise training provided via Cureus protocol</p>
+                    </div>
+                </div>
+
+                <div class="bg-canvas rounded-2xl border border-slate-200 p-6 sm:p-7 flex flex-col justify-between">
+                    <div>
+                        <span class="inline-block font-mono text-xs font-bold text-amber-700 bg-amber-50 border border-amber-200/80 px-2.5 py-1 rounded-lg mb-4">TRACK 02</span>
+                        <h3 class="font-serif text-xl font-bold text-navy-900 mb-2">Geospatial Health &amp; Neuroproteomics Fellows</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                            Join active manuscript teams on Florida Hospital Serviceability (network drive-time modeling &amp; demographic equity overlays) or MTLE+HS Neuroproteomics (PTM consensus mapping &amp; TLDc/thioredoxin structural modeling).
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-200/80 text-xs text-slate-500 space-y-1">
+                        <p><strong class="text-navy-900">Focus:</strong> Follow-up analyses, figure generation &amp; manuscript drafting</p>
+                        <p><strong class="text-navy-900">Outcome:</strong> Co-authorship on regional/national posters &amp; journal articles</p>
+                    </div>
+                </div>
+
+                <div class="bg-canvas rounded-2xl border border-slate-200 p-6 sm:p-7 flex flex-col justify-between">
+                    <div>
+                        <span class="inline-block font-mono text-xs font-bold text-navy-900 bg-slate-200/70 px-2.5 py-1 rounded-lg mb-4">TRACK 03</span>
+                        <h3 class="font-serif text-xl font-bold text-navy-900 mb-2">Faculty &amp; Experimental Wet-Lab Partners</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                            We collaborate with clinical educators, public health planners, and biochemical laboratories seeking <em>in vitro</em> validation of top ChEMBL-NTD kinase inhibitors or OXR1/GLRX ubiquitination/phosphorylation mutants.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-200/80 text-xs text-slate-500 space-y-1">
+                        <p><strong class="text-navy-900">Scope:</strong> Wet-lab validation, curriculum adoption, multi-site grants</p>
+                        <p><strong class="text-navy-900">Direct Contact:</strong> ccampbell@ocom.org</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Direct Email Collaboration Callout -->
+            <div id="direct-contact" class="bg-navy-900 text-white rounded-3xl border border-navy-800 p-7 sm:p-10 lg:p-12 shadow-lg">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+                    <!-- Left Column: Direct Email Callout -->
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-400/15 border border-teal-300/30 text-teal-300 text-xs font-bold uppercase tracking-wider">
+                            <span class="w-2 h-2 rounded-full bg-teal-400"></span>
+                            <span>Direct Principal Investigator Contact</span>
+                        </div>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white leading-snug">
+                            Interested in Joining or Collaborating with the Lab?
+                        </h3>
+                        <p class="text-sm sm:text-base text-slate-200 leading-relaxed max-w-2xl">
+                            This portal showcases ongoing research activity and preliminary findings from <strong class="text-white">The Campbell Research Lab</strong> at Orlando College of Osteopathic Medicine (OCOM). Students, fellows, and external investigators interested in collaborating on an active study or initiating a new project under our published <strong class="text-white">Framework</strong> should reach out directly by email.
+                        </p>
+
+                        <!-- Primary Email Address & Copy Controls -->
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-3 pt-1">
+                            <a href="mailto:ccampbell@ocom.org?subject=Research%20Collaboration%20Inquiry%20%E2%80%94%20The%20Campbell%20Research%20Lab" class="px-6 py-3.5 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-semibold text-sm transition-colors shadow-sm inline-flex items-center justify-center gap-2.5">
+                                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                <span>Email ccampbell@ocom.org</span>
+                            </a>
+                            <button type="button" id="copy-email-btn" class="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-sm transition-colors inline-flex items-center justify-center gap-2">
+                                <svg class="w-4 h-4 text-teal-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                                <span id="copy-email-label">Copy Email Address</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-slate-300 pt-1">
+                            Direct Address: <a href="mailto:ccampbell@ocom.org" class="font-mono text-teal-300 underline hover:text-white">ccampbell@ocom.org</a> &bull; Orlando College of Osteopathic Medicine (Winter Garden, FL)
+                        </p>
+                    </div>
+
+                    <!-- Right Column: What to Include in Your Email -->
+                    <div class="lg:col-span-5 bg-navy-950/70 rounded-2xl border border-navy-700/80 p-6 space-y-4">
+                        <span class="text-xs font-bold uppercase tracking-wider text-teal-300 block">Recommended Email Checklist</span>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            To help match you with an active study or training track, please include the following in your message:
+                        </p>
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-100">
+                            <li class="flex items-start gap-2.5">
+                                <span class="w-5 h-5 rounded-full bg-teal-600/30 border border-teal-400/40 text-teal-300 font-mono text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">1</span>
+                                <span><strong class="text-white">Academic Standing &amp; Program:</strong> e.g., OCOM OMS-I/II, undergraduate researcher, or faculty collaborator.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="w-5 h-5 rounded-full bg-teal-600/30 border border-teal-400/40 text-teal-300 font-mono text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">2</span>
+                                <span><strong class="text-white">Study or Track of Interest:</strong> Specify Study 01 (GIS Health Deserts), Study 02 (FIKK9.1 Kinase), Study 03 (MTLE+HS PTMs), or a new Framework target.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="w-5 h-5 rounded-full bg-teal-600/30 border border-teal-400/40 text-teal-300 font-mono text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">3</span>
+                                <span><strong class="text-white">Relevant Background &amp; Availability:</strong> Prior coursework, bioinformatics/GIS experience (if any), and weekly schedule.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-950 text-slate-400 border-t border-navy-800 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div>
+                <span class="text-white font-serif font-bold text-lg block">Computation Biology and Epidemiology Research</span>
+                <p class="text-xs text-slate-400 mt-1">
+                    The Campbell Research Lab &bull; Orlando College of Osteopathic Medicine (OCOM) &bull; Winter Garden, FL &bull; <a href="mailto:ccampbell@ocom.org" class="text-teal-300 hover:underline">ccampbell@ocom.org</a>
+                </p>
+            </div>
+            <div class="flex flex-wrap gap-6 text-xs font-medium text-slate-300">
+                <a href="#overview" class="hover:text-teal-300 transition-colors">Lab Overview</a>
+                <a href="#framework" class="hover:text-teal-300 transition-colors">Framework</a>
+                <a href="#projects" class="hover:text-teal-300 transition-colors">Active Studies</a>
+                <a href="#collaborate" class="hover:text-teal-300 transition-colors">Collaborate</a>
+                <a href="mailto:ccampbell@ocom.org" class="hover:text-teal-300 transition-colors">ccampbell@ocom.org</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Rich Study Detail & Interactive Data Summary Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!-- Backdrop -->
+        <div id="modal-backdrop" class="fixed inset-0 bg-navy-950/75 backdrop-blur-sm transition-opacity"></div>
+
+        <!-- Modal Container -->
+        <div class="flex min-h-full items-center justify-center p-4 sm:p-6">
+            <div class="relative w-full max-w-5xl rounded-2xl bg-white shadow-2xl border border-slate-200 overflow-hidden my-6">
+                <!-- Modal Top Bar -->
+                <div class="bg-canvas px-6 py-4 border-b border-slate-200 flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span id="modal-code" class="text-xs font-mono font-semibold text-navy-900 bg-white px-2.5 py-1 rounded-md border border-slate-200">STUDY-01</span>
+                        <span id="modal-domain" class="text-xs font-semibold text-teal-800 bg-teal-50 px-2.5 py-1 rounded-md border border-teal-200/70">Domain</span>
+                        <span id="modal-framework-badge" class="hidden text-xs font-semibold text-navy-900 bg-navy-900/10 px-2.5 py-1 rounded-md">Framework</span>
+                        <span id="modal-recruiting-badge" class="text-xs font-semibold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200/80">Open to Student Collaborators</span>
+                    </div>
+                    <button id="close-modal-btn" type="button" aria-label="Close modal" class="p-2 rounded-xl text-slate-500 hover:text-navy-900 hover:bg-slate-200/70 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <!-- Modal Scrollable Content -->
+                <div class="p-6 sm:p-8 max-h-[84vh] overflow-y-auto space-y-7">
+                    <!-- Title & Researchers -->
+                    <div>
+                        <h2 id="modal-title" class="font-serif text-2xl sm:text-3xl font-bold text-navy-900 leading-snug mb-2.5">Project Title</h2>
+                        <div class="flex flex-wrap items-center gap-x-6 gap-y-1.5 text-sm text-slate-600">
+                            <div><strong class="text-navy-900 font-semibold">Research Team:</strong> <span id="modal-leads">Names</span></div>
+                            <div><strong class="text-navy-900 font-semibold">Progress:</strong> <span id="modal-completion" class="font-mono font-semibold text-teal-700">80%</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 5-Stage Pipeline Tracker -->
+                    <div class="bg-canvas rounded-2xl border border-slate-200 p-5">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3.5">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">5-Stage Research Lifecycle Status</span>
+                            <span id="modal-stage-label" class="text-xs font-bold text-teal-700">Stage 4 of 5: Manuscript Drafting</span>
+                        </div>
+                        <div id="modal-pipeline-tracker" class="grid grid-cols-1 sm:grid-cols-5 gap-2.5">
+                            <!-- 5 Steps injected dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Two-Column Layout: Abstract/Methods + Interactive Data & Diagram Summary -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-7">
+                        <!-- Left: Abstract, Research Question & Methodology -->
+                        <div class="lg:col-span-6 space-y-5">
+                            <div>
+                                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Background &amp; Study Objective</h3>
+                                <p id="modal-summary" class="text-sm sm:text-base text-slate-700 leading-relaxed"></p>
+                            </div>
+                            <div>
+                                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Research Design &amp; Computational Methodology</h3>
+                                <p id="modal-methodology" class="text-sm text-slate-600 leading-relaxed"></p>
+                            </div>
+                            <div>
+                                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Limitations &amp; Next Validation Phase</h3>
+                                <p id="modal-limitations" class="text-sm text-slate-600 leading-relaxed"></p>
+                            </div>
+                        </div>
+
+                        <!-- Right: Interactive Data & Custom Visual Box -->
+                        <div class="lg:col-span-6 bg-canvas rounded-2xl border border-slate-200 p-5 space-y-5">
+                            <div class="flex items-center justify-between gap-2">
+                                <div>
+                                    <h3 class="text-xs font-bold uppercase tracking-wider text-navy-900">Empirical Data &amp; Structural / Pathway Summary</h3>
+                                    <p id="modal-data-subtitle" class="text-[11px] text-slate-500 mt-0.5">Verified study metrics &amp; domain architecture</p>
+                                </div>
+                                <!-- Interactive View Switcher (if secondary chart exists) -->
+                                <div id="modal-chart-tabs" class="hidden inline-flex rounded-lg bg-slate-200/80 p-0.5 text-[11px] font-semibold">
+                                    <button type="button" data-chart-idx="0" class="chart-tab-btn px-2.5 py-1 rounded-md bg-white text-navy-900 shadow-sm">View 1</button>
+                                    <button type="button" data-chart-idx="1" class="chart-tab-btn px-2.5 py-1 rounded-md text-slate-600 hover:text-navy-900">View 2</button>
+                                </div>
+                            </div>
+
+                            <!-- Key Quantitative Metrics Grid -->
+                            <div id="modal-metrics" class="grid grid-cols-2 gap-2.5">
+                                <!-- Metrics injected dynamically -->
+                            </div>
+
+                            <!-- Interactive Visual Area (Supports Bar Charts, Domain Maps, & Pathway Diagrams) -->
+                            <div id="modal-visual-container" class="pt-3 border-t border-slate-200">
+                                <!-- Injected dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Key Empirical Findings / Hypotheses -->
+                    <div class="border-t border-slate-200 pt-6">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Key Empirical Findings &amp; Analytical Highlights</h3>
+                        <ul id="modal-findings" class="space-y-2.5 text-sm text-slate-700">
+                            <!-- Bullet items injected dynamically -->
+                        </ul>
+                    </div>
+
+                    <!-- Open Collaboration Needs CTA Box -->
+                    <div class="rounded-2xl bg-amber-50/70 border border-amber-200/90 p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+                        <div class="space-y-2">
+                            <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-700">
+                                <span class="w-2 h-2 rounded-full bg-amber-700"></span>
+                                <span>Open Student Collaborator Role &bull; Email ccampbell@ocom.org</span>
+                            </div>
+                            <p id="modal-collab-desc" class="text-sm text-slate-800 leading-relaxed"></p>
+                            <div id="modal-skills-tags" class="flex flex-wrap gap-1.5 pt-1"></div>
+                        </div>
+                        <a id="modal-inquire-btn" href="mailto:ccampbell@ocom.org" class="shrink-0 px-5 py-3.5 rounded-xl bg-navy-900 text-white text-sm font-medium hover:bg-teal-700 transition-colors shadow-sm inline-flex items-center justify-center gap-2">
+                            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            <span>Email to Collaborate</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Standardized 5-Stage Research Pipeline
+        const PIPELINE_STAGES = [
+            { step: 1, short: "Conceptualization", full: "1. Conceptualization & Design" },
+            { step: 2, short: "Data Collection", full: "2. Data Collection" },
+            { step: 3, short: "Analysis & Modeling", full: "3. Analysis & Modeling" },
+            { step: 4, short: "Manuscript Drafting", full: "4. Manuscript Drafting" },
+            { step: 5, short: "Peer Review & Pub.", full: "5. Peer Review & Publication" }
+        ];
+
+        // 3-Phase Computational Drug Discovery Pipeline Details (Cureus, July 15, 2026)
+        const CUREUS_PHASES = {
+            1: {
+                badge: "PHASE 01 • TARGET IDENTIFICATION (PATHOGEN GENOMICS)",
+                title: "Phase 1: Genomic Target Discovery & Host-Pathogen Homology Filtering",
+                objectives: [
+                    "Navigate specialized functional genomics repositories (PlasmoDB) to uncover genes essential to Plasmodium falciparum survival, apicoplast metabolism, merozoite invasion, or hemoglobin degradation.",
+                    "Perform cross-species sequence alignments via NCBI BLASTP to verify evolutionary conservation across Plasmodium strains while confirming minimal homology to human host proteins (reducing off-target drug toxicity).",
+                    "Annotate conserved functional domains, catalytic motifs, and metabolic reaction networks using SMART, NCBI CDD, and KEGG."
+                ],
+                deliverable: "Validated pathogen protein sequence, conservation score, human off-target risk assessment, and functional domain map."
+            },
+            2: {
+                badge: "PHASE 02 • STRUCTURAL CHARACTERIZATION (HOMOLOGY MODELING & VALIDATION)",
+                title: "Phase 2: 3D Protein Modeling & Stereochemical Quality Assessment",
+                objectives: [
+                    "Check the Protein Data Bank (PDB) for experimentally resolved X-ray crystallography or NMR structures; when unavailable, retrieve AI-predicted structures from AlphaFold.",
+                    "Build custom 3D structural coordinate models for mutant strains or uncharacterized parasite variants via template-based homology modeling in SWISS-MODEL.",
+                    "Validate backbone stereochemical integrity via Ramachandran plot analysis (PROCHECK / MolProbity) to verify favored φ/ψ dihedral angles and eliminate steric clashes before docking."
+                ],
+                deliverable: "Stereochemically validated 3D protein coordinate model (.pdb) with mapped active-site pocket geometry."
+            },
+            3: {
+                badge: "PHASE 03 • VIRTUAL SCREENING (MOLECULAR DOCKING & THERMODYNAMICS)",
+                title: "Phase 3: Small-Molecule Library Screening & 3D Ligand-Pocket Visualization",
+                objectives: [
+                    "Curate candidate small-molecule inhibitors from generalized repositories (PubChem) and pathogen-specific bioactivity libraries (ChEMBL-NTD).",
+                    "Define structural grid coordinates around the enzyme's active site and execute virtual docking simulations in SwissDock or AutoDock.",
+                    "Rank candidate hits by Gibbs free energy (ΔG in kcal/mol) and inspect 3D binding poses in PyMOL to map hydrogen bonds, hydrophobic contacts, and electrostatic complementarity."
+                ],
+                deliverable: "Ranked list of thermodynamically favorable inhibitor leads (ΔG kcal/mol) with 3D PyMOL residue-interaction figures."
+            }
+        };
+
+        // Exact 12 Open-Access Tools from Table 1 of Campbell (2026) Cureus 18(7): e112721
+        const TOOLKIT_MATRIX = [
+            { name: "PlasmoDB", phase: 1, category: "Functional Genomics", org: "VEuPathDB (UPenn / UGA)", utility: "Specialized functional genomic database integrating genomic, transcriptomic, and proteomic data for Plasmodium species to facilitate malaria target discovery." },
+            { name: "NCBI BLASTP", phase: 1, category: "Sequence Alignment", org: "National Center for Biotechnology Information", utility: "Compares amino acid query sequences against protein databases to evaluate evolutionary conservation across pathogens and check for human host cross-reactivity." },
+            { name: "SMART", phase: 1, category: "Domain Architecture", org: "EMBL Heidelberg", utility: "Simple Modular Architectural Research Tool for identifying and annotating conserved protein domains and modular architectures." },
+            { name: "Conserved Domain Database (CDD)", phase: 1, category: "Motif Annotation", org: "NCBI", utility: "Provides functional unit annotation within protein sequences by identifying conserved structural domains, ATP-binding sites, and catalytic signature motifs." },
+            { name: "KEGG", phase: 1, category: "Pathway Networks", org: "Kyoto University", utility: "Kyoto Encyclopedia of Genes and Genomes integrating genomic, chemical, and systemic functional information to map pathogen metabolic reaction networks." },
+            { name: "AlphaFold", phase: 2, category: "AI 3D Structure Prediction", org: "Google DeepMind & EMBL-EBI", utility: "Advanced AI system predicting highly accurate three-dimensional protein structures directly from primary amino acid sequences." },
+            { name: "SWISS-MODEL", phase: 2, category: "Homology Modeling", org: "Swiss Institute of Bioinformatics (SIB)", utility: "Automated web server for template-based 3D homology modeling of protein structures, mutant variants, and stereochemical quality assessment." },
+            { name: "Protein Data Bank (PDB)", phase: 2, category: "Experimental 3D Structures", org: "wwPDB Global Repository", utility: "Primary global repository for experimentally determined 3D structural data (X-ray crystallography, NMR, cryo-EM) used as modeling templates." },
+            { name: "PubChem", phase: 3, category: "Chemical Library", org: "NCBI", utility: "Open chemistry repository providing 2D/3D chemical structures, physicochemical descriptors, and bioactivity data for millions of small molecules." },
+            { name: "ChEMBL-NTD", phase: 3, category: "Antimalarial Bioactivity", org: "EMBL-EBI", utility: "Specialized subset of ChEMBL dedicated to open-access chemical series and screening data targeted specifically at neglected tropical diseases like malaria." },
+            { name: "SwissDock", phase: 3, category: "Molecular Docking", org: "Univ. of Lausanne & SIB", utility: "Web-based molecular docking service simulating ligand-protein binding conformations and calculating thermodynamic affinity scores (ΔG in kcal/mol)." },
+            { name: "PyMOL", phase: 3, category: "3D Molecular Visualization", org: "Schrödinger, Inc.", utility: "Premier molecular graphics system used to inspect 3D protein folds, map catalytic binding pockets, and render hydrogen bonds and ligand poses." }
+        ];
+
+        // Three Active Projects in Progress
+        const PROJECTS_DATA = [
+            {
+                id: "STUDY-01",
+                title: "Identifying Healthcare Deserts: A Geospatial Analysis of Hospital Serviceability in Florida Census Tracts",
+                domain: "Public Health & Geospatial Epidemiology",
+                stage: 4,
+                stageBadgeText: "Stage 4 — Manuscript Drafting (80% Complete)",
+                completionPct: "80% Complete",
+                recruiting: true,
+                usesCureusFramework: false,
+                leads: "The Campbell Research Lab Geospatial Health Equity Team (OCOM)",
+                shortSummary: "Cross-sectional geospatial analysis across all 67 Florida counties and 5,160 census tracts (2022 ACS + 348 AHCA licensed hospitals). Uses a weighted Composite Serviceability Score (40% Distance, 35% Hospital Count within 15 mi, 25% Bed Capacity/1,000 pop) to identify 357 underserved tracts affecting 1.48 million Floridians.",
+                fullSummary: "Geographic accessibility to acute hospital care directly influences emergency survival and healthcare equity. Across all 67 Florida counties and 5,160 census tracts (22.3 million residents) and 348 licensed hospitals, we developed a 0–100 Composite Serviceability Score weighting Euclidean distance to nearest hospital (40%), number of hospitals within 15 miles (35%), and licensed bed capacity per 1,000 population (25%) to classify Critical, High Priority, Moderate Priority, and Watch List healthcare deserts.",
+                methodology: "Conducted in R (v4.5.1) using sf, tidycensus, and tidyverse. Census tract geometries and total population estimates (2022 ACS 5-year Table B01003_001) were projected to Florida State Plane (EPSG:3086) alongside geocoded Florida AHCA hospital registry data. Tracts were stratified by population density and serviceability score thresholds, plus a composite Need Score for intervention prioritization.",
+                limitations: "Current models rely on Euclidean straight-line distance rather than road-network drive times (underestimating barrier-island and bridge bottlenecks in counties like Monroe) and do not yet overlay demographic vulnerability variables (age, income, insurance status). Incoming student collaborators will lead network drive-time validation and socioeconomic equity overlays.",
+                metrics: [
+                    { label: "Underserved Tracts", value: "357 (6.9%)" },
+                    { label: "Affected Floridians", value: "1.48M (6.6%)" },
+                    { label: "Mean FL Score", value: "80.1 ± 20.3" },
+                    { label: "Critical / High Priority", value: "63 Tracts" }
+                ],
+                visualType: "charts",
+                charts: [
+                    {
+                        tabLabel: "Score Distribution",
+                        title: "Florida Census Tract Serviceability Distribution (N = 5,160)",
+                        bars: [
+                            { label: "Excellent (80–100)", value: 60.0, max: 70, displayValue: "60.0% (3,084 tracts)" },
+                            { label: "Good (60–80)", value: 29.7, max: 70, displayValue: "29.7% (1,526 tracts)" },
+                            { label: "Fair (40–60)", value: 7.0, max: 70, displayValue: "7.0% (359 tracts)" },
+                            { label: "Critical (0–20)", value: 1.9, max: 70, displayValue: "1.9% (99 tracts)" },
+                            { label: "Poor (20–40)", value: 1.8, max: 70, displayValue: "1.8% (92 tracts)" }
+                        ]
+                    },
+                    {
+                        tabLabel: "Top Counties",
+                        title: "Top 5 Counties by Underserved Resident Population",
+                        bars: [
+                            { label: "Brevard County (33 tracts)", value: 137437, max: 150000, displayValue: "137,437 residents" },
+                            { label: "Okaloosa County (13 tracts)", value: 78385, max: 150000, displayValue: "78,385 residents" },
+                            { label: "Flagler County (15 tracts)", value: 76693, max: 150000, displayValue: "76,693 residents" },
+                            { label: "Monroe County (23 tracts)", value: 75970, max: 150000, displayValue: "75,970 residents" },
+                            { label: "St. Johns County (13 tracts)", value: 70322, max: 150000, displayValue: "70,322 residents" }
+                        ]
+                    }
+                ],
+                findings: [
+                    "357 underserved census tracts (6.9% of Florida) affect approximately 1.48 million residents (6.6% of state population), including 18 Critical tracts (66,234 residents) and 45 High Priority tracts (176,967 residents).",
+                    "Collier County Census Tract 113.03 emerged as the single highest-priority hotspot (4,311 residents at 7,604/mi², Serviceability Score 0.0, zero hospitals within 15 miles, 17.5 miles to nearest hospital), while Brevard County carried the largest total underserved burden (137,437 residents across 33 tracts).",
+                    "Healthcare deserts appear in both rural/island regions (Monroe mean score 67.2) and high-density coastal suburban growth corridors (Collier, Palm Beach, Brevard, Flagler, St. Johns) where residential expansion outpaces hospital construction."
+                ],
+                collabDescription: "Open to Student Collaborators for follow-up Road-Network Drive-Time Validation (replacing Euclidean distance for barrier-island/coastal tracts) and Demographic Equity Overlays (age, income, insurance status).",
+                skillsNeeded: ["Network Drive-Time GIS", "Demographic Equity Analysis", "R (sf / tidycensus)", "Public Health Policy"]
+            },
+            {
+                id: "STUDY-02",
+                title: "Computational Characterization of the Apicoplast-Associated FIKK9.1 Serine/Threonine Kinase in Plasmodium falciparum",
+                domain: "Computational Biology & Antimalarial Drug Discovery",
+                stage: 4,
+                stageBadgeText: "Stage 4 — Manuscript Drafting (75% Complete)",
+                completionPct: "75% Complete",
+                recruiting: true,
+                usesCureusFramework: true,
+                leads: "Radhika Vatsa, Savannah Threatt (Mentored by Dr. Christopher O. Campbell)",
+                shortSummary: "Directly applies Dr. Campbell's published Cureus (2026) 3-Phase Computational Drug Discovery Framework to characterize FIKK9.1 (PF3D7_0902000), an essential apicoplast-associated serine/threonine kinase in Plasmodium falciparum lacking close human homologs, and screen ChEMBL-NTD small-molecule inhibitors via SwissDock.",
+                fullSummary: "The apicoplast in Plasmodium falciparum is an essential, secondary-endosymbiotic organelle whose disruption triggers a lethal 'delayed death' phenotype. Applying Dr. Campbell's published 3-Phase Computational Drug Discovery Framework (Cureus, July 2026), student investigators Radhika Vatsa and Savannah Threatt characterized the apicoplast-associated serine/threonine protein kinase FIKK9.1 (PF3D7_0902000) across primary sequence, domain architecture, 3D homology modeling, and virtual ligand docking.",
+                methodology: "Phase 1: FIKK9.1 sequence retrieved from PlasmoDB/UniProt; ProtParam stability profiling; conserved motif mapping via Prosite, CDD, CDART, SMART, and Superfamily; BLASTP human off-target screening; PlasmoDB stage-specific transcriptomics. Phase 2: 3D homology modeling via SWISS-MODEL benchmarked against AlphaFold predictions. Phase 3: Virtual screening of ChEMBL-NTD inhibitors via SwissDock.",
+                limitations: "Current manuscript establishes sequence conservation, absence of human homologs, catalytic pocket geometry, and favorable SwissDock binding poses; follow-up student collaborators will lead in silico lead optimization, ADMET pharmacokinetic filtering, and molecular dynamics stability analysis.",
+                metrics: [
+                    { label: "Target Locus", value: "PF3D7_0902000" },
+                    { label: "Catalytic Domain", value: "aa 172–539" },
+                    { label: "Human Homologs", value: "None (Selective)" },
+                    { label: "Virtual Screening", value: "ChEMBL-NTD" }
+                ],
+                visualType: "domainMap",
+                findings: [
+                    "ProtParam physicochemical profiling predicts FIKK9.1 is a stable, soluble enzyme with biochemical parameters consistent with active serine/threonine kinase catalysis.",
+                    "SMART, CDD, Prosite, and Superfamily analyses confirm a conserved serine/threonine kinase catalytic domain spanning residues ~172–539, including intact ATP-binding residues and a catalytically active-site motif.",
+                    "BLASTP and SMART comparisons verify strong conservation across Plasmodium species with no close human homologs, while SWISS-MODEL/AlphaFold 3D models reveal an accessible active-site cleft with favorable ChEMBL-NTD inhibitor docking orientations."
+                ],
+                collabDescription: "Open to Student Collaborators for follow-up In Silico Lead Optimization, ADMET / Lipinski Drug-Likeness Profiling of top ChEMBL-NTD hits, and comparative PyMOL active-site residue interaction mapping.",
+                skillsNeeded: ["In Silico Lead Optimization", "ADMET Profiling", "SwissDock / PyMOL", "Cureus 3-Phase Pipeline"]
+            },
+            {
+                id: "STUDY-03",
+                title: "Computational Prediction of Post-Translational Modifications in OXR1 and GLRX Proteins in Mesial Temporal Lobe Epilepsy with Hippocampal Sclerosis",
+                domain: "Neuroproteomics & Computational Molecular Medicine",
+                stage: 3,
+                stageBadgeText: "Stage 3 — Analysis & Modeling (55% Complete)",
+                completionPct: "55% Complete",
+                recruiting: true,
+                usesCureusFramework: false,
+                leads: "Jose Puell, Nimrit Doad (Mentored by Dr. Christopher O. Campbell)",
+                shortSummary: "Investigates the 'proteostatic crisis' in drug-resistant MTLE+HS where Oxidation Resistance 1 (OXR1) and Glutaredoxin (GLRX) are consistently downregulated across DIA and PRM proteomic platforms. Maps aberrant ubiquitination and phosphorylation 'switches' predicted to accelerate degradation or disrupt the OXR1 TLDc domain and GLRX thioredoxin-like active site.",
+                fullSummary: "Mesial temporal lobe epilepsy with hippocampal sclerosis (MTLE+HS) is characterized by chronic oxidative stress, glutathione dysregulation, and a 'proteostatic crisis.' Integrative multi-omics data (DIA and PRM mass spectrometry validation) show that the neuronal survival proteins OXR1 (Oxidation Resistance 1) and GLRX (Glutaredoxin) are consistently depleted at the protein level even in the absence of rare genomic loss-of-function mutations. We model whether acquired post-translational modifications (PTMs) serve as molecular switches triggering premature proteasomal degradation or active-site inactivation.",
+                methodology: "Combines quantitative human TLE DIA/PRM proteomic downregulation signatures with multi-algorithm computational PTM site prediction (ubiquitination and phosphorylation mapping) across functional domains—specifically the C-terminal TLDc domain of OXR1 (which governs peroxiredoxin interactions) and the thioredoxin-like catalytic fold of GLRX—followed by 3D structural mapping.",
+                limitations: "Computational PTM predictions prioritize high-confidence regulatory degrons and active-site modification hotspots that require subsequent wet-lab biochemical validation (e.g., ubiquitination assays and site-directed mutagenesis in neuronal oxidative stress models).",
+                metrics: [
+                    { label: "Target Proteins", value: "OXR1 & GLRX" },
+                    { label: "Proteomic Platforms", value: "DIA & PRM" },
+                    { label: "Functional Domains", value: "TLDc / Trx-like" },
+                    { label: "Predicted PTMs", value: "Ubiquitin / Phos" }
+                ],
+                visualType: "pathwayDiagram",
+                findings: [
+                    "Integrative DIA and PRM proteomic validation establishes consistent acquired downregulation of OXR1 and GLRX in human MTLE+HS hippocampal tissue, bridging transcriptomic oxidative stress signatures with functional proteome depletion.",
+                    "Models aberrant ubiquitination and phosphorylation 'switches' targeting OXR1's TLDc domain (disrupting antioxidant partner binding with peroxiredoxins) and GLRX's thioredoxin-like active site.",
+                    "Provides a prioritized catalog of candidate PTM regulatory sites to guide targeted experimental mutagenesis and proteostatic rescue studies in drug-resistant epilepsy."
+                ],
+                collabDescription: "Open to Student Collaborators for PTM Site Consensus Mapping (ubiquitination/phosphorylation predictors) and 3D Structural Domain Disruption Analysis (mapping candidate PTMs onto OXR1 TLDc and GLRX structures).",
+                skillsNeeded: ["PTM Site Mapping", "3D Structural Disruption", "PyMOL / AlphaFold", "Neuroproteomics"]
+            }
+        ];
+
+        // State
+        let selectedDomain = 'all';
+        let selectedToolkitPhase = 'all';
+        let activeModalProject = null;
+
+        // DOM Elements
+        const projectsGrid = document.getElementById('projects-grid');
+        const emptyState = document.getElementById('empty-state');
+        const domainPills = document.querySelectorAll('.domain-pill');
+        const filterStage = document.getElementById('filter-stage');
+        const filterRecruiting = document.getElementById('filter-recruiting');
+        const resetFiltersBtn = document.getElementById('reset-filters-btn');
+        const visibleCountEl = document.getElementById('visible-count');
+        const totalCountEl = document.getElementById('total-count');
+
+        // Modal Elements
+        const modal = document.getElementById('project-modal');
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const modalInquireBtn = document.getElementById('modal-inquire-btn');
+
+        // Render Cureus 3-Phase Detail Panel
+        function renderPhaseDetail(phaseNum) {
+            const data = CUREUS_PHASES[phaseNum];
+            if (!data) return;
+
+            const panel = document.getElementById('phase-detail-panel');
+            panel.innerHTML = `
+                <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+                    <div class="space-y-3 lg:w-8/12">
+                        <span class="inline-block font-mono text-xs font-bold text-teal-800 bg-teal-50 border border-teal-200 px-2.5 py-1 rounded-md">
+                            ${data.badge}
+                        </span>
+                        <h4 class="font-serif text-xl sm:text-2xl font-bold text-navy-900">${data.title}</h4>
+                        <ul class="space-y-2.5 text-sm text-slate-700 pt-1">
+                            ${data.objectives.map(obj => `
+                                <li class="flex items-start gap-2.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-teal-600 mt-2 shrink-0"></span>
+                                    <span>${obj}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                    <div class="lg:w-4/12 bg-canvas rounded-xl border border-slate-200 p-4 sm:p-5 space-y-2 shrink-0">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 block">Phase Output &amp; Student Milestone</span>
+                        <p class="text-xs sm:text-sm font-medium text-navy-900 leading-relaxed">${data.deliverable}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Phase Selector Card Listeners
+        document.querySelectorAll('.phase-selector-card').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const phase = parseInt(btn.getAttribute('data-phase'), 10);
+                document.querySelectorAll('.phase-selector-card').forEach(card => {
+                    card.classList.remove('border-2', 'border-navy-900');
+                    card.classList.add('border', 'border-slate-200');
+                    const badge = card.querySelector('span.font-mono');
+                    if (badge) {
+                        badge.classList.remove('bg-navy-900', 'text-white');
+                        badge.classList.add('bg-slate-100', 'text-navy-900');
+                    }
+                });
+                btn.classList.remove('border', 'border-slate-200');
+                btn.classList.add('border-2', 'border-navy-900');
+                const activeBadge = btn.querySelector('span.font-mono');
+                if (activeBadge) {
+                    activeBadge.classList.remove('bg-slate-100', 'text-navy-900');
+                    activeBadge.classList.add('bg-navy-900', 'text-white');
+                }
+                renderPhaseDetail(phase);
+            });
+        });
+
+        // Render 12-Tool Open-Access Computational Toolkit Matrix
+        function renderToolkitMatrix() {
+            const grid = document.getElementById('toolkit-grid');
+            const filtered = selectedToolkitPhase === 'all'
+                ? TOOLKIT_MATRIX
+                : TOOLKIT_MATRIX.filter(t => String(t.phase) === String(selectedToolkitPhase));
+
+            grid.innerHTML = filtered.map(tool => `
+                <div class="rounded-2xl border border-slate-200 bg-canvas/70 hover:bg-white hover:border-navy-700/40 p-5 transition-all flex flex-col justify-between gap-3">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-2">
+                            <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-navy-900 text-white">Phase ${tool.phase}</span>
+                            <span class="text-[11px] font-semibold text-teal-800 bg-teal-50 border border-teal-200/70 px-2 py-0.5 rounded">${tool.category}</span>
+                        </div>
+                        <h4 class="font-serif text-lg font-bold text-navy-900">${tool.name}</h4>
+                        <p class="text-[11px] font-medium text-slate-500 mb-2">${tool.org}</p>
+                        <p class="text-xs text-slate-600 leading-relaxed">${tool.utility}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        document.querySelectorAll('.tool-phase-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                document.querySelectorAll('.tool-phase-pill').forEach(p => {
+                    p.classList.remove('bg-navy-900', 'text-white');
+                    p.classList.add('bg-canvas', 'text-slate-700', 'border', 'border-slate-200');
+                });
+                pill.classList.remove('bg-canvas', 'text-slate-700', 'border', 'border-slate-200');
+                pill.classList.add('bg-navy-900', 'text-white');
+                selectedToolkitPhase = pill.getAttribute('data-tool-phase');
+                renderToolkitMatrix();
+            });
+        });
+
+        // Render Ongoing Research Project Cards
+        function renderProjects() {
+            const stageFilter = filterStage.value;
+            const recruitingOnly = filterRecruiting.checked;
+
+            const filtered = PROJECTS_DATA.filter(project => {
+                const matchesDomain = selectedDomain === 'all' || project.domain === selectedDomain;
+                const matchesStage = stageFilter === 'all' || String(project.stage) === String(stageFilter);
+                const matchesRecruiting = !recruitingOnly || project.recruiting;
+                return matchesDomain && matchesStage && matchesRecruiting;
+            });
+
+            visibleCountEl.textContent = filtered.length;
+            totalCountEl.textContent = PROJECTS_DATA.length;
+
+            if (filtered.length === 0) {
+                projectsGrid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            projectsGrid.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+
+            projectsGrid.innerHTML = filtered.map(project => {
+                const stepsHtml = PIPELINE_STAGES.map(s => {
+                    const isCompleted = s.step < project.stage;
+                    const isCurrent = s.step === project.stage;
+                    let pillClass = "bg-slate-100 text-slate-400 border-slate-200";
+                    if (isCompleted) pillClass = "bg-navy-900 text-white border-navy-900";
+                    if (isCurrent) pillClass = "bg-teal-700 text-white border-teal-700 ring-2 ring-teal-700/20";
+                    return `
+                        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-[11px] font-semibold ${pillClass}">
+                            <span class="font-mono">${s.step}</span>
+                            <span class="hidden sm:inline">${s.short}</span>
+                        </div>
+                    `;
+                }).join('');
+
+                return `
+                    <article data-project-id="${project.id}" class="cursor-pointer group bg-white rounded-3xl border border-slate-200 hover:border-navy-800 p-6 sm:p-8 shadow-sm hover:shadow-md transition-all">
+                        <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-5 border-b border-slate-100">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="font-mono text-xs font-bold text-navy-900 bg-canvas px-2.5 py-1 rounded-lg border border-slate-200">${project.id}</span>
+                                <span class="text-xs font-semibold text-teal-800 bg-teal-50 px-2.5 py-1 rounded-lg border border-teal-200/70">${project.domain}</span>
+                                ${project.usesCureusFramework ? `<span class="text-xs font-semibold text-navy-900 bg-navy-900/10 px-2.5 py-1 rounded-lg">Applies Framework</span>` : ''}
+                            </div>
+                            <div class="flex items-center gap-2">
+                                ${project.recruiting ? `<span class="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200/80"><span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>Open Collaborator Role</span>` : ''}
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                            <div class="lg:col-span-8 space-y-3">
+                                <h3 class="font-serif text-xl sm:text-2xl font-bold text-navy-900 group-hover:text-teal-700 transition-colors leading-snug">
+                                    ${project.title}
+                                </h3>
+                                <p class="text-xs font-medium text-slate-500">
+                                    <strong class="text-navy-900">Investigators:</strong> ${project.leads}
+                                </p>
+                                <p class="text-sm text-slate-600 leading-relaxed">
+                                    ${project.shortSummary}
+                                </p>
+                            </div>
+
+                            <div class="lg:col-span-4 bg-canvas rounded-2xl border border-slate-200 p-4 space-y-3">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="font-bold uppercase tracking-wider text-slate-500">Current Milestone</span>
+                                    <span class="font-mono font-bold text-teal-700">${project.completionPct}</span>
+                                </div>
+                                <p class="text-xs font-semibold text-navy-900">${project.stageBadgeText}</p>
+                                <div class="grid grid-cols-2 gap-2 pt-1">
+                                    ${project.metrics.slice(0, 2).map(m => `
+                                        <div class="bg-white rounded-xl border border-slate-200/80 p-2.5">
+                                            <span class="block text-[10px] font-semibold text-slate-500 uppercase">${m.label}</span>
+                                            <span class="font-mono text-xs font-bold text-navy-900 mt-0.5 block">${m.value}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div class="flex flex-wrap items-center gap-1.5">
+                                ${stepsHtml}
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-navy-900 group-hover:text-teal-700 transition-colors shrink-0">
+                                <span>Inspect Data Summary &amp; Details</span>
+                                <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </span>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            // Attach click listeners to cards
+            document.querySelectorAll('[data-project-id]').forEach(card => {
+                card.addEventListener('click', () => {
+                    openProjectModal(card.getAttribute('data-project-id'));
+                });
+            });
+        }
+
+        // Render Visuals in Modal (Charts, FIKK9.1 Domain Map, or MTLE+HS Pathway Diagram)
+        function renderModalVisual(project, chartIndex = 0) {
+            const container = document.getElementById('modal-visual-container');
+            const tabsEl = document.getElementById('modal-chart-tabs');
+
+            if (project.visualType === 'charts' && project.charts) {
+                tabsEl.classList.remove('hidden');
+                const tabBtns = tabsEl.querySelectorAll('.chart-tab-btn');
+                tabBtns.forEach((btn, idx) => {
+                    if (project.charts[idx]) {
+                        btn.textContent = project.charts[idx].tabLabel;
+                    }
+                    if (idx === chartIndex) {
+                        btn.classList.add('bg-white', 'text-navy-900', 'shadow-sm');
+                        btn.classList.remove('text-slate-600');
+                    } else {
+                        btn.classList.remove('bg-white', 'text-navy-900', 'shadow-sm');
+                        btn.classList.add('text-slate-600');
+                    }
+                });
+
+                const chart = project.charts[chartIndex] || project.charts[0];
+                container.innerHTML = `
+                    <div class="space-y-3">
+                        <p class="text-xs font-bold text-navy-900">${chart.title}</p>
+                        <div class="space-y-2.5">
+                            ${chart.bars.map(bar => {
+                                const widthPct = Math.min(100, Math.max(4, Math.round((bar.value / bar.max) * 100)));
+                                return `
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between text-[11px] font-medium">
+                                            <span class="text-slate-700">${bar.label}</span>
+                                            <span class="font-mono font-semibold text-navy-900">${bar.displayValue}</span>
+                                        </div>
+                                        <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+                                            <div class="h-full bg-teal-700 rounded-full" style="width: ${widthPct}%"></div>
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            } else if (project.visualType === 'domainMap') {
+                tabsEl.classList.add('hidden');
+                container.innerHTML = `
+                    <div class="space-y-3">
+                        <p class="text-xs font-bold text-navy-900">FIKK9.1 (PF3D7_0902000) Conserved Domain Architecture</p>
+                        <div class="bg-white rounded-xl border border-slate-200 p-4 space-y-3">
+                            <div class="flex justify-between text-[10px] font-mono text-slate-500">
+                                <span>N-Term (aa 1)</span>
+                                <span>Catalytic Core (aa 172–539)</span>
+                                <span>C-Term</span>
+                            </div>
+                            <div class="relative w-full h-7 bg-slate-100 rounded-lg border border-slate-200 flex items-center px-2">
+                                <div class="w-1/4 text-[10px] font-mono text-slate-500 text-center">Apicoplast Transit</div>
+                                <div class="w-2/3 h-5 bg-navy-900 text-white rounded flex items-center justify-center text-[10px] font-mono font-bold shadow-sm">
+                                    Ser/Thr Kinase Domain (ATP-Binding + Active Motif)
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 text-[11px] pt-1">
+                                <div class="bg-teal-50 border border-teal-200/70 rounded-lg p-2">
+                                    <span class="font-bold text-teal-800 block">Host Selectivity</span>
+                                    <span class="text-slate-600">Zero close human homologs (BLASTP)</span>
+                                </div>
+                                <div class="bg-amber-50 border border-amber-200/70 rounded-lg p-2">
+                                    <span class="font-bold text-amber-800 block">SwissDock Screening</span>
+                                    <span class="text-slate-600">Favorable ChEMBL-NTD active-site poses</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (project.visualType === 'pathwayDiagram') {
+                tabsEl.classList.add('hidden');
+                container.innerHTML = `
+                    <div class="space-y-3">
+                        <p class="text-xs font-bold text-navy-900">MTLE+HS Proteostatic Crisis &amp; PTM Hypothesis Pathway</p>
+                        <div class="bg-white rounded-xl border border-slate-200 p-4 space-y-2.5 text-xs">
+                            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+                                <span class="font-bold text-navy-900 block">1. Chronic Hippocampal Oxidative Stress</span>
+                                <span class="text-slate-600 text-[11px]">Glutathione dysregulation &amp; reactive oxygen species accumulation in MTLE+HS.</span>
+                            </div>
+                            <div class="text-center text-slate-400 font-mono text-xs">&darr;</div>
+                            <div class="p-2.5 rounded-lg bg-amber-50 border border-amber-200">
+                                <span class="font-bold text-amber-800 block">2. Aberrant PTM "Switches" (Ubiquitination &amp; Phosphorylation)</span>
+                                <span class="text-slate-700 text-[11px]">Targets OXR1 (TLDc domain) &amp; GLRX (thioredoxin-like active site).</span>
+                            </div>
+                            <div class="text-center text-slate-400 font-mono text-xs">&darr;</div>
+                            <div class="p-2.5 rounded-lg bg-teal-50 border border-teal-200">
+                                <span class="font-bold text-teal-800 block">3. Acquired Proteomic Depletion (DIA / PRM Validated)</span>
+                                <span class="text-slate-700 text-[11px]">Shortened protein half-life &amp; loss of neuronal antioxidant defense.</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Open Project Detail Modal
+        function openProjectModal(projectId) {
+            const project = PROJECTS_DATA.find(p => p.id === projectId);
+            if (!project) return;
+            activeModalProject = project;
+
+            document.getElementById('modal-code').textContent = project.id;
+            document.getElementById('modal-domain').textContent = project.domain;
+            document.getElementById('modal-title').textContent = project.title;
+            document.getElementById('modal-leads').textContent = project.leads;
+            document.getElementById('modal-completion').textContent = project.completionPct;
+            document.getElementById('modal-stage-label').textContent = project.stageBadgeText;
+
+            const fwBadge = document.getElementById('modal-framework-badge');
+            if (project.usesCureusFramework) {
+                fwBadge.classList.remove('hidden');
+            } else {
+                fwBadge.classList.add('hidden');
+            }
+
+            const recBadge = document.getElementById('modal-recruiting-badge');
+            if (project.recruiting) {
+                recBadge.classList.remove('hidden');
+            } else {
+                recBadge.classList.add('hidden');
+            }
+
+            // 5-Stage Pipeline Tracker inside Modal
+            document.getElementById('modal-pipeline-tracker').innerHTML = PIPELINE_STAGES.map(s => {
+                const isDone = s.step < project.stage;
+                const isCurrent = s.step === project.stage;
+                let cardStyle = "bg-white border-slate-200 text-slate-400";
+                let statusTag = "Upcoming";
+                if (isDone) {
+                    cardStyle = "bg-navy-900 border-navy-900 text-white";
+                    statusTag = "Completed";
+                } else if (isCurrent) {
+                    cardStyle = "bg-teal-700 border-teal-700 text-white ring-2 ring-teal-700/25";
+                    statusTag = "Active Stage";
+                }
+                return `
+                    <div class="rounded-xl border p-3 ${cardStyle}">
+                        <div class="flex items-center justify-between text-[10px] font-mono uppercase opacity-85 mb-1">
+                            <span>Step 0${s.step}</span>
+                            <span>${statusTag}</span>
+                        </div>
+                        <p class="text-xs font-bold leading-snug">${s.short}</p>
+                    </div>
+                `;
+            }).join('');
+
+            // Narrative Sections
+            document.getElementById('modal-summary').textContent = project.fullSummary;
+            document.getElementById('modal-methodology').textContent = project.methodology;
+            document.getElementById('modal-limitations').textContent = project.limitations;
+
+            // Key Metrics Grid
+            document.getElementById('modal-metrics').innerHTML = project.metrics.map(m => `
+                <div class="bg-white rounded-xl border border-slate-200 p-3">
+                    <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-500">${m.label}</span>
+                    <span class="font-mono text-sm font-bold text-navy-900 mt-1 block">${m.value}</span>
+                </div>
+            `).join('');
+
+            // Render Visuals & Bind Chart Tab Switcher
+            renderModalVisual(project, 0);
+            document.querySelectorAll('.chart-tab-btn').forEach(btn => {
+                btn.onclick = () => {
+                    const idx = parseInt(btn.getAttribute('data-chart-idx'), 10);
+                    renderModalVisual(project, idx);
+                };
+            });
+
+            // Key Empirical Findings
+            document.getElementById('modal-findings').innerHTML = project.findings.map(item => `
+                <li class="flex items-start gap-2.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-teal-700 mt-2 shrink-0"></span>
+                    <span>${item}</span>
+                </li>
+            `).join('');
+
+            // Collaboration Box
+            document.getElementById('modal-collab-desc').textContent = project.collabDescription;
+            document.getElementById('modal-skills-tags').innerHTML = project.skillsNeeded.map(skill => `
+                <span class="px-2.5 py-1 rounded-lg bg-white border border-amber-200 text-xs font-semibold text-navy-900">${skill}</span>
+            `).join('');
+
+            // Update pre-addressed mailto link for this specific study
+            const subject = encodeURIComponent(`Research Collaboration Inquiry (${project.id}): ${project.title}`);
+            const body = encodeURIComponent(`Dear Dr. Campbell,\n\nI am interested in collaborating on ${project.id} (${project.title}).\n\n- Academic Standing / Program:\n- Relevant Background / Skills:\n- Weekly Availability:\n\nBest regards,`);
+            modalInquireBtn.href = `mailto:ccampbell@ocom.org?subject=${subject}&body=${body}`;
+
+            modal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeProjectModal() {
+            modal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        // Copy Email Address Button Handler
+        const copyEmailBtn = document.getElementById('copy-email-btn');
+        const copyEmailLabel = document.getElementById('copy-email-label');
+        if (copyEmailBtn) {
+            copyEmailBtn.addEventListener('click', () => {
+                const emailText = "ccampbell@ocom.org";
+                const tempTextarea = document.createElement('textarea');
+                tempTextarea.value = emailText;
+                document.body.appendChild(tempTextarea);
+                tempTextarea.select();
+                try {
+                    document.execCommand('copy');
+                    copyEmailLabel.textContent = "Copied: ccampbell@ocom.org";
+                    setTimeout(() => {
+                        copyEmailLabel.textContent = "Copy Email Address";
+                    }, 2500);
+                } catch (err) {
+                    copyEmailLabel.textContent = "ccampbell@ocom.org";
+                }
+                document.body.removeChild(tempTextarea);
+            });
+        }
+
+        // Copy Citation Button Handler (using document.execCommand('copy') for iframe compatibility)
+        const copyCitationBtn = document.getElementById('copy-citation-btn');
+        const copyCitationLabel = document.getElementById('copy-citation-label');
+        if (copyCitationBtn) {
+            copyCitationBtn.addEventListener('click', () => {
+                const citationText = "Campbell C O (July 15, 2026) Demystifying Computational Biology: A Scalable Drug Discovery Framework for Medical Curricula. Cureus 18(7): e112721. DOI 10.7759/cureus.112721";
+                const tempTextarea = document.createElement('textarea');
+                tempTextarea.value = citationText;
+                document.body.appendChild(tempTextarea);
+                tempTextarea.select();
+                try {
+                    document.execCommand('copy');
+                    copyCitationLabel.textContent = "Citation Copied!";
+                    setTimeout(() => {
+                        copyCitationLabel.textContent = "Copy Cureus Citation";
+                    }, 2500);
+                } catch (err) {
+                    copyCitationLabel.textContent = "DOI: 10.7759/cureus.112721";
+                }
+                document.body.removeChild(tempTextarea);
+            });
+        }
+
+        // Event Listeners for Filters & Modal
+        domainPills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                domainPills.forEach(p => {
+                    p.classList.remove('active', 'bg-navy-900', 'text-white');
+                    p.classList.add('bg-canvas', 'text-slate-700', 'border', 'border-slate-200');
+                });
+                pill.classList.add('active', 'bg-navy-900', 'text-white');
+                pill.classList.remove('bg-canvas', 'text-slate-700', 'border', 'border-slate-200');
+                selectedDomain = pill.getAttribute('data-domain');
+                renderProjects();
+            });
+        });
+
+        filterStage.addEventListener('change', renderProjects);
+        filterRecruiting.addEventListener('change', renderProjects);
+
+        resetFiltersBtn.addEventListener('click', () => {
+            selectedDomain = 'all';
+            domainPills.forEach(p => {
+                if (p.getAttribute('data-domain') === 'all') {
+                    p.classList.add('active', 'bg-navy-900', 'text-white');
+                    p.classList.remove('bg-canvas', 'text-slate-700', 'border', 'border-slate-200');
+                } else {
+                    p.classList.remove('active', 'bg-navy-900', 'text-white');
+                    p.classList.add('bg-canvas', 'text-slate-700', 'border', 'border-slate-200');
+                }
+            });
+            filterStage.value = 'all';
+            filterRecruiting.checked = false;
+            renderProjects();
+        });
+
+        closeModalBtn.addEventListener('click', closeProjectModal);
+        modalBackdrop.addEventListener('click', closeProjectModal);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeProjectModal();
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPhaseDetail(1);
+            renderToolkitMatrix();
+            renderProjects();
+        });
+    </script>
+</body>
+</html>
